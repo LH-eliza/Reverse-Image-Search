@@ -23,12 +23,6 @@ Google Custom Search Engine ID.
 
 Getting Started
 1. Clone the repository
-2. git clone https://github.com/LH-eliza/reverse-image-bot.git
-cd reverse-image-bot
-
-
-Getting Started
-1. Clone the repository
 ```
 git clone https://github.com/LH-eliza/reverse-image-bot.git
 cd reverse-image-bot
@@ -47,6 +41,16 @@ GOOGLE_CX=your_google_cx
 
 ```
 
-4. Build and Run with Docker
-5. 
+4. Build and run with Docker
+Build the Docker image:
 
+```
+docker build -t reverse-image-bot .
+```
+Run the Docker container:
+```
+docker run -p 3000:3000 reverse-image-bot
+```
+
+5. Test the Application
+Use Postman or any other tool to send a POST request to http://localhost:3000/search with an image file as form-data.
