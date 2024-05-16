@@ -9,7 +9,7 @@ const searchGoogleCustom = require("./services/googleCustomSearch");
 const performOCR = require("./services/ocr");
 const analyzeMetadata = require("./services/metadata");
 const checkStockPhoto = require("./services/stockPhotoCheck");
-const performFacialRecognition = require("./services/facialRecognition");
+const performAzureFaceRecognition = require("./services/azureFace");
 
 const app = express();
 const upload = multer({ dest: "uploads/" });
@@ -25,7 +25,7 @@ app.post("/search", upload.single("image"), async (req, res) => {
     const ocrText = await performOCR(imagePath);
     const metadata = await analyzeMetadata(imagePath);
     const stockPhotoResults = await checkStockPhoto(imageBase64);
-    const facialRecognitionResults = await performFacialRecognition(
+    const facialRecognitionResults = await performAzureFaceRecognition(
       imageBase64
     );
 
