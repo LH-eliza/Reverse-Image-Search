@@ -13,7 +13,7 @@ Optical Character Recognition (OCR) using Tesseract.js.
 Metadata analysis to retrieve image details.
 Stock photo check to identify commonly used stock images.
 Facial recognition for identifying potential impersonations.
-Dockerized for consistent and portable environment.
+Dockerized for a consistent and portable environment.
 
 ## Prerequisites
 Node.js and npm installed.
@@ -38,14 +38,13 @@ Create a .env file in the root directory and add your Google API key and Custom 
 ```
 GOOGLE_API_KEY=your_google_api_key
 GOOGLE_CX=your_google_cx
-
 ```
 
 4. Build and run with Docker
 Build the Docker image:
 
 ```
-docker build -t reverse-image-bot .
+docker build -t reverse-image-bot.
 ```
 Run the Docker container:
 ```
