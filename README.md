@@ -35,10 +35,7 @@ npm install
 
 3. Set up environment variables
 Create a .env file in the root directory and add your Google API key and Custom Search Engine ID.
-```
-GOOGLE_API_KEY=your_google_api_key
-GOOGLE_CX=your_google_cx
-```
+
 
 4. Build and run with Docker
 Build the Docker image:
