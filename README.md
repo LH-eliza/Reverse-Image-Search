@@ -63,7 +63,7 @@ This project was created to allow people to easily access reverse image searchin
    - Web Interface: http://localhost:3000
    - API Health Check: http://localhost:3000/health
 
-## 🐳 Docker Deployment
+## Docker Deployment
 
 ### Using Docker Compose (Recommended)
 
@@ -155,7 +155,7 @@ const response = await fetch('/api/search', {
 const results = await response.json();
 ```
 
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables
 
@@ -186,7 +186,7 @@ const results = await response.json();
    - Create a new search engine
    - Add the API key and Search Engine ID to your `.env` file
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 Reverse-Image-Search/
@@ -211,7 +211,7 @@ Reverse-Image-Search/
 └── README.md              # This file
 ```
 
-## 🔍 Analysis Features
+## Analysis Features
 
 ### Google Vision Analysis
 
