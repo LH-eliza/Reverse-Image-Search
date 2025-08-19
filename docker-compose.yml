@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  reverse-image-detection:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      # Add your API keys here or use a .env file
+      # - GOOGLE_VISION_API_KEY=your_google_vision_api_key
+      # - GOOGLE_CUSTOM_SEARCH_API_KEY=your_google_custom_search_api_key
+      # - GOOGLE_CUSTOM_SEARCH_ENGINE_ID=your_search_engine_id
+    volumes:
+      - ./uploads:/app/uploads
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "require('http').get('http://localhost:3000/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: Add Redis for caching (uncomment if needed)
+  # redis:
+  #   image: redis:7-alpine
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - redis_data:/data
+  #   restart: unless-stopped
+# volumes:
+#   redis_data:

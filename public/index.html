@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reverse Image Detection - AI-Powered Image Analysis</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-content">
+          <div class="logo">
+            <i class="fas fa-search-plus"></i>
+            <h1>Reverse Image Detection</h1>
+          </div>
+          <p class="subtitle">
+            AI-Powered Image Analysis for Safety and Transparency
+          </p>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Upload Section -->
+        <section class="upload-section">
+          <div class="upload-container">
+            <div class="upload-area" id="uploadArea">
+              <div class="upload-content">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <h3>Upload an Image</h3>
+                <p>Drag and drop an image here or click to browse</p>
+                <p class="file-types">
+                  Supported: JPG, PNG, GIF, WebP, BMP (Max 10MB)
+                </p>
+                <input type="file" id="imageInput" accept="image/*" hidden />
+                <button
+                  class="upload-btn"
+                  onclick="document.getElementById('imageInput').click()"
+                >
+                  Choose File
+                </button>
+              </div>
+            </div>
+
+            <!-- Preview -->
+            <div class="image-preview" id="imagePreview" style="display: none">
+              <img id="previewImage" src="" alt="Preview" />
+              <button class="remove-btn" onclick="removeImage()">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Analysis Options -->
+          <div class="analysis-options">
+            <h3>Analysis Options</h3>
+            <div class="options-grid">
+              <label class="option-item">
+                <input type="checkbox" id="enhancedAnalysis" checked />
+                <span class="checkmark"></span>
+                <div class="option-content">
+                  <i class="fas fa-rocket"></i>
+                  <span>Enhanced Analysis</span>
+                </div>
+              </label>
+              <label class="option-item">
+                <input type="checkbox" id="facialRecognition" checked />
+                <span class="checkmark"></span>
+                <div class="option-content">
+                  <i class="fas fa-user"></i>
+                  <span>Facial Recognition</span>
+                </div>
+              </label>
+              <label class="option-item">
+                <input type="checkbox" id="ocrAnalysis" checked />
+                <span class="checkmark"></span>
+                <div class="option-content">
+                  <i class="fas fa-font"></i>
+                  <span>OCR Text Detection</span>
+                </div>
+              </label>
+              <label class="option-item">
+                <input type="checkbox" id="stockPhotoCheck" checked />
+                <span class="checkmark"></span>
+                <div class="option-content">
+                  <i class="fas fa-image"></i>
+                  <span>Stock Photo Detection</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Analyze Button -->
+          <button
+            class="analyze-btn"
+            id="analyzeBtn"
+            onclick="analyzeImage()"
+            disabled
+          >
+            <i class="fas fa-search"></i>
+            Analyze Image
+          </button>
+        </section>
+
+        <!-- Loading Section -->
+        <section
+          class="loading-section"
+          id="loadingSection"
+          style="display: none"
+        >
+          <div class="loading-content">
+            <div class="spinner"></div>
+            <h3>Analyzing Image...</h3>
+            <p>This may take a few moments while we process your image</p>
+            <div class="progress-bar">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Results Section -->
+        <section
+          class="results-section"
+          id="resultsSection"
+          style="display: none"
+        >
+          <div class="results-header">
+            <h2>Analysis Results</h2>
+            <button class="new-analysis-btn" onclick="resetAnalysis()">
+              <i class="fas fa-plus"></i>
+              New Analysis
+            </button>
+          </div>
+
+          <!-- Summary Card -->
+          <div class="summary-card" id="summaryCard">
+            <div class="summary-header">
+              <h3>Summary</h3>
+              <div class="risk-indicator" id="riskIndicator">
+                <span class="risk-label">Risk Level:</span>
+                <span class="risk-value" id="riskValue">Low</span>
+              </div>
+            </div>
+            <div class="summary-content" id="summaryContent">
+              <!-- Summary content will be populated here -->
+            </div>
+          </div>
+
+          <!-- Detailed Results -->
+          <div class="results-grid" id="resultsGrid">
+            <!-- Results will be populated here -->
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-content">
+          <p>
+            &copy; 2024 Reverse Image Detection. Built for transparency and
+            safety.
+          </p>
+          <div class="footer-links">
+            <a href="#" onclick="showAbout()">About</a>
+            <a href="#" onclick="showPrivacy()">Privacy</a>
+            <a href="#" onclick="showAPI()">API</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal" id="aboutModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>About Reverse Image Detection</h3>
+          <button class="modal-close" onclick="closeModal('aboutModal')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>
+            This application provides comprehensive reverse image search
+            capabilities using advanced AI technologies including Google Vision
+            API, OCR, and facial recognition.
+          </p>
+          <p>
+            Our mission is to promote transparency and safety in online spaces
+            by providing tools to verify image authenticity and detect potential
+            manipulation.
+          </p>
+          <h4>Features:</h4>
+          <ul>
+            <li>Reverse image search using Google Vision API</li>
+            <li>Optical Character Recognition (OCR) for text extraction</li>
+            <li>Facial recognition and impersonation detection</li>
+            <li>Stock photo identification</li>
+            <li>Metadata analysis and EXIF data extraction</li>
+            <li>Comprehensive web search integration</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="privacyModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Privacy Policy</h3>
+          <button class="modal-close" onclick="closeModal('privacyModal')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>
+            Your privacy is important to us. This application processes images
+            for analysis purposes only.
+          </p>
+          <h4>Data Handling:</h4>
+          <ul>
+            <li>
+              Images are processed temporarily and deleted immediately after
+              analysis
+            </li>
+            <li>No images are stored permanently on our servers</li>
+            <li>Analysis results are not logged or stored</li>
+            <li>We do not collect personal information</li>
+          </ul>
+          <h4>Third-Party Services:</h4>
+          <p>
+            This application uses Google Vision API and other third-party
+            services for image analysis. Please refer to their respective
+            privacy policies.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="apiModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>API Documentation</h3>
+          <button class="modal-close" onclick="closeModal('apiModal')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h4>Endpoints:</h4>
+          <div class="api-endpoint">
+            <code>POST /api/search</code>
+            <p>Standard image analysis</p>
+          </div>
+          <div class="api-endpoint">
+            <code>POST /api/search/enhanced</code>
+            <p>Enhanced analysis with additional features</p>
+          </div>
+          <div class="api-endpoint">
+            <code>GET /health</code>
+            <p>Service health check</p>
+          </div>
+          <h4>Usage:</h4>
+          <p>
+            Send a POST request with an image file in the 'image' field using
+            multipart/form-data.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
