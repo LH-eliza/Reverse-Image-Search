@@ -2,11 +2,11 @@
 
 A comprehensive reverse image detection application that leverages Google Vision API, Google Custom Search API, and Tesseract.js for Optical Character Recognition (OCR). This project is designed to provide transparency and safety in online spaces by allowing users to verify image authenticity and detect potential manipulation.
 
-## 🎯 Purpose
+## Purpose
 
 This project was created to allow people to easily access reverse image searching capabilities utilizing the features of Google Lens, but allows for full transparency. This project was created without malicious intent, it allows others to be safe within online spaces providing full transparency and safety.
 
-## ✨ Features
+## Features
 
 - **Reverse Image Search**: Using Google Vision API for comprehensive image analysis
 - **Web Search Integration**: Google Custom Search API for finding similar images online
@@ -18,7 +18,7 @@ This project was created to allow people to easily access reverse image searchin
 - **Docker Support**: Containerized for easy deployment and scalability
 - **RESTful API**: Clean API endpoints for integration with other applications
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -89,7 +89,7 @@ This project was created to allow people to easily access reverse image searchin
    docker run -p 3000:3000 --env-file .env reverse-image-detection
    ```
 
-## 📚 API Documentation
+## API Documentation
 
 ### Endpoints
 
